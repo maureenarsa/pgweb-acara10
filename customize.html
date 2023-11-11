@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    /* Background pada Judul */
+ *.info {
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    text-align: center;
+}
+.info h2 {
+    margin: 0 0 5px;
+    color: #777;
+}
+</head>
+<body>
+    /* Judul dan Subjudul */
+    var title = new L.Control();
+    title.onAdd = function (map) {
+        this._div = L.DomUtil.create('div', 'info');
+        this.update();
+        return this._div;
+    };
+    title.update = function () {
+        this._div.innerHTML = '<h2>LATIHAN WEBGIS | COVID-19 KABUPATEN SLEMAN</h2>MATAKULIAH
+        PEMROGRAMAN SPASIAL : WEB'
+    };
+    title.addTo(map);
+
+    /* Image Legend */
+    L.Control.Legend = L.Control.extend({
+        onAdd: function(map) {
+            var img = L.DomUtil.create('img');
+            img.src = 'assets/img/legend/legend.png';
+            img.style.width = '300px';
+            return img;
+        }
+    });
+
+    L.control.Legend = function(opts) {
+        return new L.Control.Legend(opts);
+    }
+    L.control.Legend({ position: 'bottomleft' }).addTo(map);
+
+    /* Image Watermark */
+    L.Control.Watermark = L.Control.extend({
+        onAdd: function(map) {
+            var img = L.DomUtil.create('img');
+            img.src = 'assets/img/logo/LOGO_SIG_BLUE.png';
+            img.style.width = '300px';
+            return img;
+        }
+    });
+
+    L.control.watermark = function(opts) {
+        return new L.Control.Watermark(opts);
+    }
+
+    L.control.watermark({ position: 'bottomleft' }).addTo(map);
+    
+</body>
+</html>
